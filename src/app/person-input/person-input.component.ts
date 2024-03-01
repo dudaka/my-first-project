@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PersonsService } from '../persons.service';
 
 @Component({
   selector: 'app-person-input',
@@ -10,16 +11,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class PersonInputComponent {
   enteredPersonName: string;
-  @Output() personCreate: EventEmitter<string>;
+  // @Output() personCreate: EventEmitter<string>;
 
-  constructor() {
+  constructor(private personsService: PersonsService) {
     this.enteredPersonName = 'Dung';
-    this.personCreate = new EventEmitter<string>();
+    // this.personCreate = new EventEmitter<string>();
   }
 
   onCreatePerson(name: string) {
     // console.log(name);
     // this.enteredPersonName = 'Dung Ho';
-    this.personCreate.emit(name);
+    // this.personCreate.emit(name);
+    this.personsService.addPerson(name);
   }
 }
